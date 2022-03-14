@@ -1,11 +1,12 @@
 package com.coremaker.authentication.service;
 
-import com.coremaker.authentication.UserRepository;
+import com.coremaker.authentication.repository.UserRepository;
 import com.coremaker.authentication.entity.User;
 import com.coremaker.authentication.model.SignUpModel;
 import com.coremaker.authentication.security.UserPrincipal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,8 +49,9 @@ public class UserService implements UserDetailsService {
         return new ResponseEntity<>("User created successfully", HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> getUserDetails(final String username) {
-        return new ResponseEntity<>(userRepository.findByName(username), HttpStatus.OK);
+    public ResponseEntity<Object> getUserDetails() {
+        final String loggedUserEmail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        return new ResponseEntity<>(userRepository.findByEmail(loggedUserEmail), HttpStatus.OK);
     }
 
 }

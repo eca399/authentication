@@ -22,9 +22,9 @@ public class AuthenticationController {
         return userService.signUp(signUpModel);
     }
 
-    @GetMapping("/user-details/{user-name}")
-    public ResponseEntity<Object> userDetails(@PathVariable("user-name") final String username)
+    @GetMapping("/user-details")
+    public ResponseEntity<Object> userDetails()
     {
-        return userService.getUserDetails(username);
+        return userService.getUserDetails();
     }
 }

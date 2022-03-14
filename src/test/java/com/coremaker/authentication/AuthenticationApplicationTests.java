@@ -35,7 +35,7 @@ public class AuthenticationApplicationTests {
 		final String token = responseBody.substring(user.getEmail().length() + 1);
 		given().contentType("application/json")
 				.header("Authorization", "Bearer " + token)
-				.when().get("http://localhost:8080/auth/user-details/Gigi")
+				.when().get("http://localhost:8080/auth/user-details")
 				.then().statusCode(200);
 	}
 }

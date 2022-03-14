@@ -1,4 +1,4 @@
-package com.coremaker.authentication;
+package com.coremaker.authentication.repository;
 
 import com.coremaker.authentication.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
